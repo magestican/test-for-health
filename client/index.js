@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 require('./index.html');
-import './styles/main.scss';
+require('./styles/main.scss');
 import App from './components/app';
 import { Provider } from 'react-redux'
 import { createStore ,compose,applyMiddleware} from 'redux'

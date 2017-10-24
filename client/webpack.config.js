@@ -7,6 +7,9 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, '../client-dist')
   },
+  resolveLoader : {
+    moduleExtensions: ["-loader"]
+  },
   module: {
     loaders: [
       {
@@ -17,7 +20,15 @@ module.exports = {
         loader: 'file-loader?name=[name].[ext]'
       }, {
         test: /\.scss$/,
-        loader : "sass-loader" // compiles Sass to CSS
+        use: [
+          {
+            loader: 'style'
+          }, {
+            loader: 'css'
+          }, {
+            loader: 'sass'
+          }
+        ]
       }
     ]
   }
