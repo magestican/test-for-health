@@ -60,7 +60,7 @@ export default class App extends Component {
 
     let weatherItems = (this.props.climateLocations.map((o,i)=>{
       return <Draggable key={o.id}
-      
+
       handle=".handle"
       defaultPosition={{x: 0, y: 0}}
       position={null}
@@ -71,7 +71,7 @@ export default class App extends Component {
         <div style={{"width" : itemWidth,'backgroundColor' : this.getRandomColor(i)}} className="weather-item fade-in handle" >
           <div className="content">
             <h4>{o.name}</h4>
-            <p>
+            <p> 
             { o.weatherData ? 'Temperature :' + o.weatherData.currently.temperature : ''}
             </p>
             <p>
