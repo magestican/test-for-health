@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {getWeather,addClimateLocation} from '../actions/weather'
 import { connect } from 'react-redux'
+import Draggable from 'react-draggable';
 
 @connect(mapStateToProps)
 export default class App extends Component {
@@ -58,20 +59,30 @@ export default class App extends Component {
       </div>);
 
     let weatherItems = (this.props.climateLocations.map((o,i)=>{
-      return <div style={{"width" : itemWidth,'backgroundColor' : this.getRandomColor(i)}} className="weather-item fade-in" key={o.id}>
-        <div className="content">
-          <h4>{o.name}</h4>
-          <p>
-          { o.weatherData ? 'Temperature :' + o.weatherData.currently.temperature : ''}
-          </p>
-          <p>
-          { o.weatherData ? 'Pressure : ' + o.weatherData.currently.pressure : ''}
-          </p>
-          <p>
-          { o.weatherData ? 'Humidty : ' + o.weatherData.currently.humidity : ''}
-          </p>
+      return <Draggable key={o.id}
+      
+      handle=".handle"
+      defaultPosition={{x: 0, y: 0}}
+      position={null}
+      grid={[25, 25]}
+      onStart={this.handleStart}
+      onDrag={this.handleDrag}
+      onStop={this.handleStop}>
+        <div style={{"width" : itemWidth,'backgroundColor' : this.getRandomColor(i)}} className="weather-item fade-in handle" >
+          <div className="content">
+            <h4>{o.name}</h4>
+            <p>
+            { o.weatherData ? 'Temperature :' + o.weatherData.currently.temperature : ''}
+            </p>
+            <p>
+            { o.weatherData ? 'Pressure : ' + o.weatherData.currently.pressure : ''}
+            </p>
+            <p>
+            { o.weatherData ? 'Humidty : ' + o.weatherData.currently.humidity : ''}
+            </p>
+          </div>
         </div>
-      </div>
+      </Draggable>
     }))
 
     return <div className="weather">
