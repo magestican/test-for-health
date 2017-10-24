@@ -3,7 +3,7 @@ var https = require('https');
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
-var request = require('request');
+var apiEndpoints = require('./apiEndpoints');
 
 var options = {
   key: fs.readFileSync(path.join(__dirname, '/ssl/key.pem')),
@@ -37,22 +37,4 @@ https.createServer(options, app).listen(443, () => {
 });
 
 // API querying sample from darksky : https://api.darksky.net/forecast/[key]/[latitude],[longitude]
-app.post('/weather-data', (req, res) => {
-  var url = '';
-  req.body = {};
-  req.body.longitude = '-33.8700308';
-  req.body.latitude = '151.2116687';
-  if (req.body) {
-    url = `https://api.darksky.net/forecast/${process.env.DARK_TOKEN}/${req.body.longitude},${req.body.latitude}`.replace(' ',''); //windows variable picks up the space after the token
-    console.info(url);
-    request(url, (error, response, body) => {
-      if (error) console.error('error:', error);
-      console.info('statusCode:', response && response.statusCode);
-      res.send(body);
-    });
-  } else {
-    console.error('body not provided')
-    res.status = 400;
-    res.send();
-  }
-});
+app.post('/weather-data', apiEndpoints.weatherData);
