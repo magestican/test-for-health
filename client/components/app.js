@@ -54,7 +54,7 @@ export default class App extends Component {
           this.locationNameElement = input;
         }} placeholder="Location Name"  type="text"/>
 
-        <button onClick={this.addClimateLocation}>Add</button>
+        <button onClick={this.addClimateLocation}>Add new</button>
       </div>);
 
     let weatherItems = (this.props.climateLocations.map((o,i)=>{
