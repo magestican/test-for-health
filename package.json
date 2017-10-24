@@ -1,0 +1,43 @@
+{
+  "name": "test-for-health",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-server": "set DARK_TOKEN=a68f0b480c83a64a2397a43791e2692c && node server/server.js",
+    "build-client": "webpack --config ./client/webpack.config.js",
+    "watch-client": "webpack --config ./client/webpack.config.js --colors --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magestican/test-for-health.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/magestican/test-for-health/issues"
+  },
+  "homepage": "https://github.com/magestican/test-for-health#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "express": "^4.16.2",
+    "file-loader": "^1.1.5",
+    "http": "0.0.0",
+    "https": "^1.0.0",
+    "node-sass": "^4.5.3",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "request": "^2.83.0",
+    "sass-loader": "^6.0.6",
+    "webpack": "^3.8.1"
+  }
+}
