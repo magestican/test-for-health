@@ -9,8 +9,13 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducer/rootReducer';
 import {initialState} from './reducer/initialState';
 
+const store = createStore(rootReducer,(sessionStorage.savedReduxState
+  ? JSON.parse(sessionStorage.savedReduxState)
+  : initialState),compose(applyMiddleware(thunk)));
 
-let store = createStore(rootReducer,initialState,compose(applyMiddleware(thunk)))
+window.onunload = function () {
+  sessionStorage.savedReduxState = JSON.stringify(store.getState());
+}
 
 window.onload = ()=>{
   ReactDOM.render(

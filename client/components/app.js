@@ -13,7 +13,7 @@ export default class App extends Component {
   addClimateLocation = () =>{
     debugger
     let newClimateLocation = {
-      id: this.props.climateLocations.length,
+      id: this.props.climateLocations.length + 1,
       latitude : this.latitudeElement.value,
       longitude : this.longitudeElement.value,
       name: this.locationNameElement.value
@@ -45,7 +45,7 @@ export default class App extends Component {
         return <div style={{"width" : itemWidth,'backgroundColor' : getRandomColor(i) }} className="weather-item" key={o.id}>
 
         <div className="content">
-          {o.name}
+          <h4>{o.name}</h4>
           <p>{ o.weatherData ? 'Temperature :' + o.weatherData.currently.temperature : ''}</p>
           <p>{ o.weatherData ? 'Pressure : ' + o.weatherData.currently.pressure : ''}</p>
           <p>
@@ -55,7 +55,7 @@ export default class App extends Component {
         </div></div>
     })}
     <div className="new-weather weather-item">
-      New Weather System :
+      <h4> New Weather System :</h4>
 
       <div className="form">
         <input ref={(input) => {
