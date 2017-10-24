@@ -11,7 +11,6 @@ export default class App extends Component {
 
 
   addClimateLocation = () =>{
-    debugger
     let newClimateLocation = {
       id: this.props.climateLocations.length + 1,
       latitude : this.latitudeElement.value,
@@ -28,34 +27,36 @@ export default class App extends Component {
   }
 
 
+  getRandomColor(index){
+    let getRandomArbitrary = (min, max) =>{
+       return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    let randomColors =  ['#4ECDC4','#FF6B6B','#C7F464','#64ac8f'];
+    return randomColors[getRandomArbitrary(0,randomColors.length - 1)];
+
+  }
+
   render(){
 
-    let randomColors =  ['#4ECDC4','#FF6B6B','#C7F464','#64ac8f'];
 
-    let getRandomColor = (index)=>{
-      if(index < randomColors.length - 1) {
-        return randomColors[index];
-      } else {
-        return randomColors[0];
-      }
-    }
     let itemWidth = ((100 / this.props.climateLocations.length)) + '%';
     return <div className="weather">
       { this.props.climateLocations.map((o,i)=>{
-        return <div style={{"width" : itemWidth,'backgroundColor' : getRandomColor(i) }} className="weather-item" key={o.id}>
+        debugger
+        return <div style={{"width" : itemWidth,'backgroundColor' : this.getRandomColor(i)}} className="weather-item fade-in" key={o.id}>
 
-        <div className="content">
-          <h4>{o.name}</h4>
-          <p>{ o.weatherData ? 'Temperature :' + o.weatherData.currently.temperature : ''}</p>
-          <p>{ o.weatherData ? 'Pressure : ' + o.weatherData.currently.pressure : ''}</p>
-          <p>
-          { o.weatherData ? 'Humidty : ' + o.weatherData.currently.humidity : ''}
-          </p>
-
-        </div></div>
+          <div className="content">
+            <h4>{o.name}</h4>
+            <p>{ o.weatherData ? 'Temperature :' + o.weatherData.currently.temperature : ''}</p>
+            <p>{ o.weatherData ? 'Pressure : ' + o.weatherData.currently.pressure : ''}</p>
+            <p>
+            { o.weatherData ? 'Humidty : ' + o.weatherData.currently.humidity : ''}
+            </p>
+          </div>
+        </div>
     })}
     <div className="new-weather weather-item">
-      <h4> New Weather System :</h4>
+      <h4> New Weather System</h4>
 
       <div className="form">
         <input ref={(input) => {
